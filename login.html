@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login – Mein Schulplaner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<main>
+
+    <h1>Mein Schulplaner</h1>
+
+    <div class="formular">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="E-Mail"
+        >
+
+        <input
+            type="password"
+            id="passwort"
+            placeholder="Passwort"
+        >
+
+        <button onclick="registrieren()">
+            Registrieren
+        </button>
+
+        <button onclick="einloggen()">
+            Einloggen
+        </button>
+
+    </div>
+
+    <p id="meldung"></p>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://vpenaoibwhwxislraznq.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+// ==========================
+// REGISTRIEREN
+// ==========================
+
+async function registrieren() {
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const passwort =
+        document.getElementById("passwort").value;
+
+    if (!email || !passwort) {
+        document.getElementById("meldung").innerText =
+            "Bitte E-Mail und Passwort eingeben.";
+        return;
+    }
+
+    const { error } =
+        await supabaseClient.auth.signUp({
+            email: email,
+            password: passwort
+        });
+
+    if (error) {
+
+        document.getElementById("meldung").innerText =
+            error.message;
+
+        return;
+    }
+
+    document.getElementById("meldung").innerText =
+        "Account erstellt! Prüfe deine E-Mails.";
+}
+
+
+// ==========================
+// EINLOGGEN
+// ==========================
+
+async function einloggen() {
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const passwort =
+        document.getElementById("passwort").value;
+
+    if (!email || !passwort) {
+        document.getElementById("meldung").innerText =
+            "Bitte E-Mail und Passwort eingeben.";
+        return;
+    }
+
+    const { error } =
+        await supabaseClient.auth.signInWithPassword({
+            email: email,
+            password: passwort
+        });
+
+    if (error) {
+
+        document.getElementById("meldung").innerText =
+            error.message;
+
+        return;
+    }
+
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

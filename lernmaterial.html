@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lernmaterial – Mein Schulplaner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Mein Schulplaner</h1>
+
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Startseite</a>
+            <a href="kalender.html">Kalender</a>
+            <a href="noten.html">Notenrechner</a>
+            <a href="lernmaterial.html">Lernmaterial</a>
+        </div>
+
+        <a
+            class="untis-link"
+            href="https://webuntis.com/"
+            target="_blank"
+        >
+            Untis
+        </a>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Lernmaterial</h2>
+
+    <div class="formular">
+
+        <select id="materialFach">
+            <option value="Mathe">Mathe</option>
+            <option value="Deutsch">Deutsch</option>
+            <option value="Englisch">Englisch</option>
+            <option value="Französisch">Französisch</option>
+            <option value="Bio">Bio</option>
+            <option value="Physik">Physik</option>
+            <option value="Chemie">Chemie</option>
+            <option value="Politik">Politik</option>
+            <option value="Musik">Musik</option>
+            <option value="Sport">Sport</option>
+            <option value="Geographie">Geographie</option>
+            <option value="Ethik">Ethik</option>
+            <option value="Geschichte">Geschichte</option>
+            <option value="Kunst">Kunst</option>
+        </select>
+
+        <input
+            type="text"
+            id="materialName"
+            placeholder="Name des Dokuments"
+        >
+
+        <input
+            type="file"
+            id="materialDatei"
+        >
+
+        <button onclick="materialHinzufuegen()">
+            + Material hinzufügen
+        </button>
+
+    </div>
+
+    <h2>Meine Lernmaterialien</h2>
+
+    <div id="materialListe"></div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://vpenaoibwhwxislraznq.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
+

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender – Mein Schulplaner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Mein Schulplaner</h1>
+
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Startseite</a>
+            <a href="kalender.html">Kalender</a>
+            <a href="noten.html">Notenrechner</a>
+            <a href="lernmaterial.html">Lernmaterial</a>
+        </div>
+
+        <a
+            class="untis-link"
+            href="https://webuntis.com/"
+            target="_blank"
+        >
+            Untis
+        </a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- KALENDER -->
+
+    <div class="kalender-kopf">
+        <button onclick="monatZurueck()">←</button>
+
+        <h2 id="monatJahr"></h2>
+
+        <button onclick="monatVor()">→</button>
+    </div>
+
+    <div class="wochentage">
+        <div>Mo</div>
+        <div>Di</div>
+        <div>Mi</div>
+        <div>Do</div>
+        <div>Fr</div>
+        <div>Sa</div>
+        <div>So</div>
+    </div>
+
+    <div id="kalender" class="kalender"></div>
+
+
+    <!-- TERMIN HINZUFÜGEN -->
+
+    <h2>Termin hinzufügen</h2>
+
+    <div class="formular">
+
+        <select id="fach">
+            <option value="">Fach auswählen</option>
+            <option value="Mathe">Mathe</option>
+            <option value="Deutsch">Deutsch</option>
+            <option value="Englisch">Englisch</option>
+            <option value="Französisch">Französisch</option>
+            <option value="Bio">Bio</option>
+            <option value="Physik">Physik</option>
+            <option value="Chemie">Chemie</option>
+            <option value="Politik">Politik</option>
+            <option value="Musik">Musik</option>
+            <option value="Sport">Sport</option>
+            <option value="Geographie">Geographie</option>
+            <option value="Ethik">Ethik</option>
+            <option value="Geschichte">Geschichte</option>
+            <option value="Kunst">Kunst</option>
+        </select>
+
+        <select id="art">
+            <option value="KA">Klassenarbeit</option>
+            <option value="HA">Hausaufgabe</option>
+            <option value="Test">Test</option>
+            <option value="Sonstiges">Sonstiges</option>
+        </select>
+
+        <input
+            type="text"
+            id="beschreibung"
+            placeholder="Beschreibung"
+        >
+
+        <input
+            type="date"
+            id="datum"
+        >
+
+        <button onclick="terminHinzufuegen()">
+            + Termin hinzufügen
+        </button>
+
+    </div>
+
+
+    <!-- MEINE TERMINE -->
+
+    <h2>Meine Termine</h2>
+
+    <div id="termine"></div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://vpenaoibwhwxislraznq.supabase.co";
+
+const SUPABASE_KEY = "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

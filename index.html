@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Schulplaner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Mein Schulplaner</h1>
+
+    <nav>
+        <div class="nav-links">
+            <a href="index.html">Startseite</a>
+            <a href="kalender.html">Kalender</a>
+            <a href="noten.html">Notenrechner</a>
+            <a href="lernmaterial.html">Lernmaterial</a>
+        </div>
+
+        <a
+            class="untis-link"
+            href="https://webuntis.com/"
+            target="_blank"
+        >
+            Untis
+        </a>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Willkommen!</h2>
+    <p>Hier hast du alles für deine Schule im Überblick.</p>
+
+    <div class="dashboard">
+
+        <div class="dashboard-karte">
+            <h3>Nächste Klassenarbeit</h3>
+            <div id="naechsteKA">
+                Keine Klassenarbeit eingetragen.
+            </div>
+        </div>
+
+        <div class="dashboard-karte">
+            <h3>Nächste Hausaufgabe</h3>
+            <div id="naechsteHA">
+                Keine Hausaufgabe eingetragen.
+            </div>
+        </div>
+
+        <div class="dashboard-karte">
+            <h3>Notendurchschnitt</h3>
+            <div id="startDurchschnitt">
+                Noch keine Noten.
+            </div>
+        </div>
+
+        <div class="dashboard-karte">
+            <h3>Kommende Termine</h3>
+            <div id="anzahlTermine">
+                0 Termine
+            </div>
+        </div>
+
+    </div>
+
+    <section class="tagesziele">
+
+        <h2>Meine Tagesziele</h2>
+
+        <p class="ziel-info">
+            Setze dir kleine Ziele für den heutigen Tag.
+        </p>
+
+        <div class="ziel-formular">
+
+            <input
+                type="text"
+                id="zielInput"
+                placeholder="Was möchtest du heute schaffen?"
+            >
+
+            <button onclick="zielHinzufuegen()">
+                + Ziel
+            </button>
+
+        </div>
+
+        <div id="zieleListe"></div>
+
+    </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+const SUPABASE_URL = "https://vpenaoibwhwxislraznq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>

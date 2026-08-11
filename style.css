@@ -1,0 +1,400 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6fb;
+    color: #222;
+}
+
+/* ==========================
+   HEADER
+   ========================== */
+
+header {
+    background: #ffffff;
+    padding: 18px 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+header h1 {
+    margin: 0 0 15px;
+}
+
+/* NAVIGATION */
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #222;
+    text-decoration: none;
+    padding: 9px 13px;
+    border-radius: 9px;
+}
+
+nav a:hover {
+    background: #f0f1f5;
+}
+
+/* UNTIS */
+
+.untis-link {
+    color: #222;
+    text-decoration: none;
+    font-weight: normal;
+    margin-left: 0;
+    padding: 9px 13px;
+    border-radius: 9px;
+}
+
+/* ==========================
+   HAUPTBEREICH
+   ========================== */
+
+main {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+/* ==========================
+   FORMULAR
+   ========================== */
+
+.formular {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.formular input,
+.formular select {
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+button {
+    border: none;
+    border-radius: 9px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* ==========================
+   DASHBOARD
+   ========================== */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.dashboard-karte {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.dashboard-karte h3 {
+    margin-top: 0;
+}
+
+/* ==========================
+   SCHNELLZUGRIFF
+   ========================== */
+
+.schnellzugriff {
+    margin-top: 35px;
+}
+
+.schnellzugriff a {
+    display: inline-block;
+    background: white;
+    color: #222;
+    text-decoration: none;
+    padding: 15px 20px;
+    margin: 5px;
+    border-radius: 11px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+/* ==========================
+   KALENDER
+   ========================== */
+
+.kalender-kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+.kalender-kopf h2 {
+    margin: 0;
+}
+
+.kalender-kopf button {
+    font-size: 25px;
+    width: 45px;
+    height: 45px;
+    padding: 0;
+}
+
+.wochentage,
+.kalender {
+    max-width: 900px;
+    margin: auto;
+}
+
+.wochentage {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.wochentage div {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.kalender {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.kalender-tag {
+    background: white;
+    min-height: 110px;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.leerer-tag {
+    background: transparent;
+    box-shadow: none;
+}
+
+.heute {
+    outline: 3px solid #222;
+}
+
+.tag-nummer {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.kalender-termin {
+    font-size: 11px;
+    padding: 5px;
+    margin-top: 4px;
+    border-radius: 6px;
+    background: #eef0f5;
+    display: flex;
+    justify-content: space-between;
+    gap: 3px;
+}
+
+.kalender-termin button {
+    padding: 2px 5px;
+    font-size: 10px;
+}
+
+/* ==========================
+   NORMALE TERMINE
+   ========================== */
+
+.termin {
+    background: white;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+/* ==========================
+   DURCHSCHNITT
+   ========================== */
+
+.durchschnitt {
+    background: white;
+    padding: 20px;
+    border-radius: 14px;
+    margin-top: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+/* ==========================
+   TAGESZIELE
+   ========================== */
+
+.tagesziele {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+
+.ziel-info {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.ziel-formular {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ziel-formular input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    font-size: 15px;
+}
+
+.ziel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-top: 8px;
+    background: #f5f6f8;
+    border-radius: 10px;
+}
+
+.ziel input {
+    width: 18px;
+    height: 18px;
+}
+
+.ziel-erledigt {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.ziel button {
+    margin-left: auto;
+    padding: 6px 9px;
+}
+
+/* ==========================
+   MOBILE
+   ========================== */
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+    }
+
+    nav a {
+        text-align: center;
+        background: #f4f5f8;
+    }
+
+    .untis-link {
+        margin-left: 5px;
+    }
+
+    main {
+        padding: 20px 12px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .formular {
+        flex-direction: column;
+    }
+
+    .formular input,
+    .formular select,
+    .formular button {
+        width: 100%;
+    }
+
+    .kalender-tag {
+        min-height: 75px;
+        padding: 5px;
+    }
+
+    .wochentage div {
+        font-size: 11px;
+        padding: 6px 2px;
+    }
+
+    .tag-nummer {
+        font-size: 12px;
+    }
+
+    .kalender-termin {
+        font-size: 8px;
+        padding: 3px;
+    }
+
+    .kalender-termin button {
+        display: none;
+    }
+
+    .ziel-formular {
+        flex-direction: column;
+    }
+
+    .ziel-formular input,
+    .ziel-formular button {
+        width: 100%;
+    }
+}
