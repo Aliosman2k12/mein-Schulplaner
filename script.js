@@ -5,7 +5,6 @@
 let aktuellerBenutzer = null;
 
 async function benutzerLaden() {
-
     const { data, error } =
         await supabaseClient.auth.getUser();
 
@@ -27,7 +26,6 @@ async function benutzerLaden() {
 let termine = [];
 
 async function termineLaden() {
-
     const user = await benutzerLaden();
 
     if (!user) return;
@@ -54,7 +52,6 @@ async function termineLaden() {
 
 
 async function terminHinzufuegen() {
-
     const fach =
         document.getElementById("fach").value;
 
@@ -106,7 +103,6 @@ async function terminHinzufuegen() {
 
 
 async function terminLoeschen(index) {
-
     const termin = termine[index];
 
     if (!termin) return;
@@ -133,7 +129,6 @@ async function terminLoeschen(index) {
 
 
 function termineAnzeigen() {
-
     const container =
         document.getElementById("termine");
 
@@ -142,10 +137,8 @@ function termineAnzeigen() {
     container.innerHTML = "";
 
     if (termine.length === 0) {
-
         container.innerHTML =
             "<p>Keine Termine vorhanden.</p>";
-
         return;
     }
 
@@ -156,7 +149,6 @@ function termineAnzeigen() {
     );
 
     termine.forEach((termin, index) => {
-
         const div =
             document.createElement("div");
 
@@ -187,7 +179,6 @@ let kalenderDatum = new Date();
 
 
 function kalenderAnzeigen() {
-
     const kalender =
         document.getElementById("kalender");
 
@@ -241,7 +232,6 @@ function kalenderAnzeigen() {
 
 
     for (let i = 0; i < startTag; i++) {
-
         const leer =
             document.createElement("div");
 
@@ -257,7 +247,6 @@ function kalenderAnzeigen() {
         tag <= tageImMonat;
         tag++
     ) {
-
         const div =
             document.createElement("div");
 
@@ -284,7 +273,6 @@ function kalenderAnzeigen() {
 
 
         termine.forEach((termin, index) => {
-
             const terminDatum =
                 new Date(termin.datum);
 
@@ -293,7 +281,6 @@ function kalenderAnzeigen() {
                 terminDatum.getMonth() === monat &&
                 terminDatum.getFullYear() === jahr
             ) {
-
                 const terminDiv =
                     document.createElement("div");
 
@@ -322,7 +309,6 @@ function kalenderAnzeigen() {
 
 
 function monatZurueck() {
-
     kalenderDatum.setMonth(
         kalenderDatum.getMonth() - 1
     );
@@ -332,7 +318,6 @@ function monatZurueck() {
 
 
 function monatVor() {
-
     kalenderDatum.setMonth(
         kalenderDatum.getMonth() + 1
     );
@@ -349,7 +334,6 @@ let noten = [];
 
 
 async function notenLaden() {
-
     const user =
         await benutzerLaden();
 
@@ -363,11 +347,8 @@ async function notenLaden() {
             .order("id", { ascending: true });
 
     if (error) {
-
         console.error(error);
-
         alert("Noten konnten nicht geladen werden.");
-
         return;
     }
 
@@ -379,7 +360,6 @@ async function notenLaden() {
 
 
 async function noteHinzufuegen() {
-
     const fachElement =
         document.getElementById("notenFach");
 
@@ -410,11 +390,8 @@ async function noteHinzufuegen() {
             });
 
     if (error) {
-
         console.error(error);
-
         alert("Note konnte nicht gespeichert werden.");
-
         return;
     }
 
@@ -423,7 +400,6 @@ async function noteHinzufuegen() {
 
 
 async function noteLoeschen(index) {
-
     const eintrag =
         noten[index];
 
@@ -437,11 +413,8 @@ async function noteLoeschen(index) {
             .eq("user_id", aktuellerBenutzer.id);
 
     if (error) {
-
         console.error(error);
-
         alert("Note konnte nicht gelöscht werden.");
-
         return;
     }
 
@@ -453,7 +426,6 @@ async function noteLoeschen(index) {
 
 
 function notenAnzeigen() {
-
     const container =
         document.getElementById("notenListe");
 
@@ -462,7 +434,6 @@ function notenAnzeigen() {
     container.innerHTML = "";
 
     if (noten.length === 0) {
-
         container.innerHTML =
             "<p>Noch keine Noten vorhanden.</p>";
 
@@ -470,7 +441,6 @@ function notenAnzeigen() {
             document.getElementById("durchschnitt");
 
         if (durchschnitt) {
-
             durchschnitt.innerText =
                 "Noch keine Noten";
         }
@@ -480,38 +450,35 @@ function notenAnzeigen() {
 
     let summe = 0;
 
-    noten.forEach(
-        (eintrag, index) => {
+    noten.forEach((eintrag, index) => {
+        summe +=
+            Number(eintrag.note);
 
-            summe +=
-                Number(eintrag.note);
+        const div =
+            document.createElement("div");
 
-            const div =
-                document.createElement("div");
+        div.className =
+            "termin";
 
-            div.className =
-                "termin";
+        div.innerHTML = `
+            <h3>${eintrag.fach}</h3>
 
-            div.innerHTML = `
-                <h3>${eintrag.fach}</h3>
+            <p>
+                Note:
+                <strong>
+                    ${eintrag.note}
+                </strong>
+            </p>
 
-                <p>
-                    Note:
-                    <strong>
-                        ${eintrag.note}
-                    </strong>
-                </p>
+            <button
+                onclick="noteLoeschen(${index})"
+            >
+                Löschen
+            </button>
+        `;
 
-                <button
-                    onclick="noteLoeschen(${index})"
-                >
-                    Löschen
-                </button>
-            `;
-
-            container.appendChild(div);
-        }
-    );
+        container.appendChild(div);
+    });
 
     const durchschnitt =
         summe / noten.length;
@@ -520,7 +487,6 @@ function notenAnzeigen() {
         document.getElementById("durchschnitt");
 
     if (durchschnittElement) {
-
         durchschnittElement.innerText =
             durchschnitt.toFixed(2);
     }
@@ -540,7 +506,6 @@ const heuteDatum =
 
 
 async function zieleLaden() {
-
     const user =
         await benutzerLaden();
 
@@ -555,11 +520,8 @@ async function zieleLaden() {
             .order("id", { ascending: true });
 
     if (error) {
-
         console.error(error);
-
         alert("Tagesziele konnten nicht geladen werden.");
-
         return;
     }
 
@@ -570,7 +532,6 @@ async function zieleLaden() {
 
 
 async function zielHinzufuegen() {
-
     const input =
         document.getElementById("zielInput");
 
@@ -580,9 +541,7 @@ async function zielHinzufuegen() {
         input.value.trim();
 
     if (text === "") {
-
         alert("Bitte gib ein Ziel ein!");
-
         return;
     }
 
@@ -602,11 +561,8 @@ async function zielHinzufuegen() {
             });
 
     if (error) {
-
         console.error(error);
-
         alert("Ziel konnte nicht gespeichert werden.");
-
         return;
     }
 
@@ -617,7 +573,6 @@ async function zielHinzufuegen() {
 
 
 async function zielAbhaken(index) {
-
     const ziel =
         ziele[index];
 
@@ -633,11 +588,8 @@ async function zielAbhaken(index) {
             .eq("user_id", aktuellerBenutzer.id);
 
     if (error) {
-
         console.error(error);
-
         alert("Ziel konnte nicht geändert werden.");
-
         return;
     }
 
@@ -646,7 +598,6 @@ async function zielAbhaken(index) {
 
 
 async function zielLoeschen(index) {
-
     const ziel =
         ziele[index];
 
@@ -660,11 +611,8 @@ async function zielLoeschen(index) {
             .eq("user_id", aktuellerBenutzer.id);
 
     if (error) {
-
         console.error(error);
-
         alert("Ziel konnte nicht gelöscht werden.");
-
         return;
     }
 
@@ -673,7 +621,6 @@ async function zielLoeschen(index) {
 
 
 function zieleAnzeigen() {
-
     const liste =
         document.getElementById("zieleListe");
 
@@ -682,48 +629,42 @@ function zieleAnzeigen() {
     liste.innerHTML = "";
 
     if (ziele.length === 0) {
-
         liste.innerHTML =
             "<p>Noch keine Ziele für heute.</p>";
-
         return;
     }
 
-    ziele.forEach(
-        (ziel, index) => {
+    ziele.forEach((ziel, index) => {
+        const div =
+            document.createElement("div");
 
-            const div =
-                document.createElement("div");
+        div.className =
+            "ziel";
 
-            div.className =
-                "ziel";
+        div.innerHTML = `
+            <input
+                type="checkbox"
+                ${ziel.erledigt ? "checked" : ""}
+                onchange="zielAbhaken(${index})"
+            >
 
-            div.innerHTML = `
+            <span class="${
+                ziel.erledigt
+                    ? "ziel-erledigt"
+                    : ""
+            }">
+                ${ziel.text}
+            </span>
 
-                <input
-                    type="checkbox"
-                    ${ziel.erledigt ? "checked" : ""}
-                    onchange="zielAbhaken(${index})"
-                >
+            <button
+                onclick="zielLoeschen(${index})"
+            >
+                ×
+            </button>
+        `;
 
-                <span class="${
-                    ziel.erledigt
-                        ? "ziel-erledigt"
-                        : ""
-                }">
-                    ${ziel.text}
-                </span>
-
-                <button
-                    onclick="zielLoeschen(${index})"
-                >
-                    ×
-                </button>
-            `;
-
-            liste.appendChild(div);
-        }
-    );
+        liste.appendChild(div);
+    });
 }
 
 
@@ -732,7 +673,6 @@ function zieleAnzeigen() {
 // ==========================
 
 function startseiteAnzeigen() {
-
     const kaAnzeige =
         document.getElementById("naechsteKA");
 
@@ -756,7 +696,6 @@ function startseiteAnzeigen() {
         );
 
     if (termineAnzeige) {
-
         termineAnzeige.innerText =
             gespeicherteTermine.length +
             (
@@ -773,7 +712,6 @@ function startseiteAnzeigen() {
         );
 
     if (klassenarbeiten.length > 0) {
-
         const ka =
             klassenarbeiten[0];
 
@@ -791,7 +729,6 @@ function startseiteAnzeigen() {
         );
 
     if (hausaufgaben.length > 0) {
-
         const ha =
             hausaufgaben[0];
 
@@ -806,7 +743,6 @@ function startseiteAnzeigen() {
         durchschnittAnzeige &&
         noten.length > 0
     ) {
-
         let summe = 0;
 
         noten.forEach(
@@ -836,7 +772,6 @@ let materialien = [];
 // ==========================
 
 async function materialLaden() {
-
     const user =
         await benutzerLaden();
 
@@ -850,11 +785,8 @@ async function materialLaden() {
             .order("id", { ascending: true });
 
     if (error) {
-
         console.error(error);
-
         alert("Lernmaterial konnte nicht geladen werden.");
-
         return;
     }
 
@@ -869,7 +801,6 @@ async function materialLaden() {
 // ==========================
 
 async function materialHinzufuegen() {
-
     const fachElement =
         document.getElementById("materialFach");
 
@@ -897,9 +828,7 @@ async function materialHinzufuegen() {
         dateiInput.files[0];
 
     if (name === "" || !datei) {
-
         alert("Bitte Name und Datei auswählen!");
-
         return;
     }
 
@@ -908,33 +837,28 @@ async function materialHinzufuegen() {
 
     if (!user) return;
 
-
-    // Eigener Ordner für jeden Benutzer
-
     const dateipfad =
-        user.id + "/" +
-        Date.now() + "_" +
+        user.id +
+        "/" +
+        Date.now() +
+        "_" +
         datei.name;
 
-
-    // Datei hochladen
 
     const { error: uploadError } =
         await supabaseClient.storage
             .from("lernmaterial")
-            .upload(dateipfad, datei);
+            .upload(
+                dateipfad,
+                datei
+            );
 
     if (uploadError) {
-
         console.error(uploadError);
-
         alert("Datei konnte nicht hochgeladen werden.");
-
         return;
     }
 
-
-    // Datenbank speichern
 
     const { error: dbError } =
         await supabaseClient
@@ -947,8 +871,8 @@ async function materialHinzufuegen() {
                 datei_pfad: dateipfad
             });
 
-    if (dbError) {
 
+    if (dbError) {
         console.error(dbError);
 
         await supabaseClient.storage
@@ -956,7 +880,6 @@ async function materialHinzufuegen() {
             .remove([dateipfad]);
 
         alert("Lernmaterial konnte nicht gespeichert werden.");
-
         return;
     }
 
@@ -973,7 +896,6 @@ async function materialHinzufuegen() {
 // ==========================
 
 async function materialOeffnen(index) {
-
     const material =
         materialien[index];
 
@@ -988,11 +910,8 @@ async function materialOeffnen(index) {
             );
 
     if (error) {
-
         console.error(error);
-
         alert("Datei konnte nicht geöffnet werden.");
-
         return;
     }
 
@@ -1008,7 +927,6 @@ async function materialOeffnen(index) {
 // ==========================
 
 async function materialLoeschen(index) {
-
     const material =
         materialien[index];
 
@@ -1020,8 +938,6 @@ async function materialLoeschen(index) {
     if (!user) return;
 
 
-    // Datei löschen
-
     const { error: storageError } =
         await supabaseClient.storage
             .from("lernmaterial")
@@ -1030,16 +946,11 @@ async function materialLoeschen(index) {
             ]);
 
     if (storageError) {
-
         console.error(storageError);
-
         alert("Datei konnte nicht gelöscht werden.");
-
         return;
     }
 
-
-    // Datenbankeintrag löschen
 
     const { error: dbError } =
         await supabaseClient
@@ -1049,11 +960,8 @@ async function materialLoeschen(index) {
             .eq("user_id", user.id);
 
     if (dbError) {
-
         console.error(dbError);
-
         alert("Lernmaterial konnte nicht gelöscht werden.");
-
         return;
     }
 
@@ -1062,11 +970,10 @@ async function materialLoeschen(index) {
 
 
 // ==========================
-// MATERIAL ANZEIGEN
+// MATERIAL FILTERN
 // ==========================
 
 function materialAnzeigen() {
-
     const container =
         document.getElementById("materialListe");
 
@@ -1074,43 +981,44 @@ function materialAnzeigen() {
 
     container.innerHTML = "";
 
-
-    // Gewähltes Fach aus dem Filter
-
-    const filterElement =
-        document.getElementById("fachFilter");
-
-    const ausgewaehltesFach =
-        filterElement
-            ? filterElement.value
-            : "Alle";
-
-
-    // Materialien filtern
-
-    const gefilterteMaterialien =
-        ausgewaehltesFach === "Alle"
-            ? materialien
-            : materialien.filter(
-                material =>
-                    material.fach === ausgewaehltesFach
-            );
-
-
-    // Keine Materialien vorhanden
-
-    if (gefilterteMaterialien.length === 0) {
-
+    if (materialien.length === 0) {
         container.innerHTML =
-            "<p>Kein Lernmaterial für dieses Fach vorhanden.</p>";
-
+            "<p>Noch kein Lernmaterial vorhanden.</p>";
         return;
     }
 
 
-    // Materialien anzeigen
+    const filter =
+        document.getElementById("fachFilter");
 
-    gefilterteMaterialien.forEach(
+    const ausgewaehltesFach =
+        filter
+            ? filter.value
+            : "Alle";
+
+
+    let angezeigteMaterialien =
+        materialien;
+
+
+    if (ausgewaehltesFach !== "Alle") {
+        angezeigteMaterialien =
+            materialien.filter(
+                material =>
+                    material.fach ===
+                    ausgewaehltesFach
+            );
+    }
+
+
+    if (angezeigteMaterialien.length === 0) {
+        container.innerHTML =
+            "<p>Für dieses Fach gibt es noch kein Lernmaterial.</p>";
+        return;
+    }
+
+
+    angezeigteMaterialien.forEach(
         (material) => {
 
             const index =
@@ -1119,10 +1027,10 @@ function materialAnzeigen() {
             const div =
                 document.createElement("div");
 
-            div.className = "termin";
+            div.className =
+                "termin";
 
             div.innerHTML = `
-
                 <h3>${material.fach}</h3>
 
                 <p>
@@ -1154,12 +1062,8 @@ function materialAnzeigen() {
 }
 
 
-// ==========================
-// MATERIALIEN FILTERN
-// ==========================
-
+// Diese Funktion wird vom Filter aufgerufen
 function materialienFiltern() {
-
     materialAnzeigen();
 }
 
@@ -1173,8 +1077,7 @@ async function allesStarten() {
     const user =
         await benutzerLaden();
 
-    if (!user)
-        return;
+    if (!user) return;
 
     await termineLaden();
 
