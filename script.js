@@ -10,7 +10,9 @@ async function benutzerLaden() {
         await supabaseClient.auth.getUser();
 
     if (error || !data.user) {
+
         window.location.href = "login.html";
+
         return null;
     }
 
@@ -250,6 +252,7 @@ function kalenderAnzeigen() {
             0
         ).getDate();
 
+
     for (let i = 0; i < startTag; i++) {
 
         const leer =
@@ -260,6 +263,7 @@ function kalenderAnzeigen() {
 
         kalender.appendChild(leer);
     }
+
 
     for (
         let tag = 1;
@@ -273,6 +277,7 @@ function kalenderAnzeigen() {
         div.className =
             "kalender-tag";
 
+
         const heute = new Date();
 
         if (
@@ -284,11 +289,13 @@ function kalenderAnzeigen() {
             div.classList.add("heute");
         }
 
+
         div.innerHTML = `
             <div class="tag-nummer">
                 ${tag}
             </div>
         `;
+
 
         termine.forEach((termin, index) => {
 
@@ -396,16 +403,19 @@ async function noteHinzufuegen() {
     if (!fachElement || !noteElement)
         return;
 
+
     const fach =
         fachElement.value;
 
     const note =
         Number(noteElement.value);
 
+
     const user =
         await benutzerLaden();
 
     if (!user) return;
+
 
     const { error } =
         await supabaseClient
@@ -416,6 +426,7 @@ async function noteHinzufuegen() {
                 note: note
             });
 
+
     if (error) {
 
         console.error(error);
@@ -424,6 +435,7 @@ async function noteHinzufuegen() {
 
         return;
     }
+
 
     await notenLaden();
 }
@@ -436,12 +448,14 @@ async function noteLoeschen(index) {
 
     if (!eintrag) return;
 
+
     const { error } =
         await supabaseClient
             .from("noten")
             .delete()
             .eq("id", eintrag.id)
             .eq("user_id", aktuellerBenutzer.id);
+
 
     if (error) {
 
@@ -451,6 +465,7 @@ async function noteLoeschen(index) {
 
         return;
     }
+
 
     noten.splice(index, 1);
 
@@ -467,6 +482,7 @@ function notenAnzeigen() {
     if (!container) return;
 
     container.innerHTML = "";
+
 
     if (noten.length === 0) {
 
@@ -485,7 +501,9 @@ function notenAnzeigen() {
         return;
     }
 
+
     let summe = 0;
+
 
     noten.forEach(
         (eintrag, index) => {
@@ -493,11 +511,13 @@ function notenAnzeigen() {
             summe +=
                 Number(eintrag.note);
 
+
             const div =
                 document.createElement("div");
 
             div.className =
                 "termin";
+
 
             div.innerHTML = `
                 <h3>${eintrag.fach}</h3>
@@ -516,15 +536,19 @@ function notenAnzeigen() {
                 </button>
             `;
 
+
             container.appendChild(div);
         }
     );
 
+
     const durchschnitt =
         summe / noten.length;
 
+
     const durchschnittElement =
         document.getElementById("durchschnitt");
+
 
     if (durchschnittElement) {
 
@@ -553,6 +577,7 @@ async function zieleLaden() {
 
     if (!user) return;
 
+
     const { data, error } =
         await supabaseClient
             .from("tagesziele")
@@ -560,6 +585,7 @@ async function zieleLaden() {
             .eq("user_id", user.id)
             .eq("datum", heuteDatum)
             .order("id", { ascending: true });
+
 
     if (error) {
 
@@ -569,6 +595,7 @@ async function zieleLaden() {
 
         return;
     }
+
 
     ziele = data || [];
 
@@ -583,8 +610,10 @@ async function zielHinzufuegen() {
 
     if (!input) return;
 
+
     const text =
         input.value.trim();
+
 
     if (text === "") {
 
@@ -593,10 +622,12 @@ async function zielHinzufuegen() {
         return;
     }
 
+
     const user =
         await benutzerLaden();
 
     if (!user) return;
+
 
     const { error } =
         await supabaseClient
@@ -608,6 +639,7 @@ async function zielHinzufuegen() {
                 erledigt: false
             });
 
+
     if (error) {
 
         console.error(error);
@@ -616,6 +648,7 @@ async function zielHinzufuegen() {
 
         return;
     }
+
 
     input.value = "";
 
@@ -630,6 +663,7 @@ async function zielAbhaken(index) {
 
     if (!ziel) return;
 
+
     const { error } =
         await supabaseClient
             .from("tagesziele")
@@ -639,6 +673,7 @@ async function zielAbhaken(index) {
             .eq("id", ziel.id)
             .eq("user_id", aktuellerBenutzer.id);
 
+
     if (error) {
 
         console.error(error);
@@ -647,6 +682,7 @@ async function zielAbhaken(index) {
 
         return;
     }
+
 
     await zieleLaden();
 }
@@ -659,12 +695,14 @@ async function zielLoeschen(index) {
 
     if (!ziel) return;
 
+
     const { error } =
         await supabaseClient
             .from("tagesziele")
             .delete()
             .eq("id", ziel.id)
             .eq("user_id", aktuellerBenutzer.id);
+
 
     if (error) {
 
@@ -674,6 +712,7 @@ async function zielLoeschen(index) {
 
         return;
     }
+
 
     await zieleLaden();
 }
@@ -686,7 +725,9 @@ function zieleAnzeigen() {
 
     if (!liste) return;
 
+
     liste.innerHTML = "";
+
 
     if (ziele.length === 0) {
 
@@ -696,6 +737,7 @@ function zieleAnzeigen() {
         return;
     }
 
+
     ziele.forEach(
         (ziel, index) => {
 
@@ -704,6 +746,7 @@ function zieleAnzeigen() {
 
             div.className =
                 "ziel";
+
 
             div.innerHTML = `
 
@@ -727,6 +770,7 @@ function zieleAnzeigen() {
                     ×
                 </button>
             `;
+
 
             liste.appendChild(div);
         }
@@ -752,8 +796,10 @@ function startseiteAnzeigen() {
     const termineAnzeige =
         document.getElementById("anzahlTermine");
 
+
     if (!kaAnzeige)
         return;
+
 
     const gespeicherteTermine =
         [...termine].sort(
@@ -761,6 +807,7 @@ function startseiteAnzeigen() {
                 new Date(a.datum) -
                 new Date(b.datum)
         );
+
 
     if (termineAnzeige) {
 
@@ -773,16 +820,19 @@ function startseiteAnzeigen() {
             );
     }
 
+
     const klassenarbeiten =
         gespeicherteTermine.filter(
             termin =>
                 termin.art === "KA"
         );
 
+
     if (klassenarbeiten.length > 0) {
 
         const ka =
             klassenarbeiten[0];
+
 
         kaAnzeige.innerHTML = `
             <strong>${ka.fach}</strong><br>
@@ -791,16 +841,19 @@ function startseiteAnzeigen() {
         `;
     }
 
+
     const hausaufgaben =
         gespeicherteTermine.filter(
             termin =>
                 termin.art === "HA"
         );
 
+
     if (hausaufgaben.length > 0) {
 
         const ha =
             hausaufgaben[0];
+
 
         haAnzeige.innerHTML = `
             <strong>${ha.fach}</strong><br>
@@ -809,6 +862,7 @@ function startseiteAnzeigen() {
         `;
     }
 
+
     if (
         durchschnittAnzeige &&
         noten.length > 0
@@ -816,14 +870,17 @@ function startseiteAnzeigen() {
 
         let summe = 0;
 
+
         noten.forEach(
             eintrag =>
                 summe +=
                     Number(eintrag.note)
         );
 
+
         const durchschnitt =
             summe / noten.length;
+
 
         durchschnittAnzeige.innerHTML =
             `<strong>${durchschnitt.toFixed(2)}</strong>`;
@@ -849,12 +906,14 @@ async function materialLaden() {
 
     if (!user) return;
 
+
     const { data, error } =
         await supabaseClient
             .from("materialien")
             .select("*")
             .eq("user_id", user.id)
             .order("id", { ascending: true });
+
 
     if (error) {
 
@@ -864,6 +923,7 @@ async function materialLaden() {
 
         return;
     }
+
 
     materialien = data || [];
 
@@ -886,6 +946,7 @@ async function materialHinzufuegen() {
     const dateiInput =
         document.getElementById("materialDatei");
 
+
     if (
         !fachElement ||
         !nameElement ||
@@ -893,6 +954,7 @@ async function materialHinzufuegen() {
     ) {
         return;
     }
+
 
     const fach =
         fachElement.value;
@@ -903,17 +965,23 @@ async function materialHinzufuegen() {
     const datei =
         dateiInput.files[0];
 
-    if (name === "" || !datei) {
+
+    if (
+        name === "" ||
+        !datei
+    ) {
 
         alert("Bitte Name und Datei auswählen!");
 
         return;
     }
 
+
     const user =
         await benutzerLaden();
 
     if (!user) return;
+
 
     const dateipfad =
         user.id +
@@ -921,6 +989,9 @@ async function materialHinzufuegen() {
         Date.now() +
         "_" +
         datei.name;
+
+
+    // Datei hochladen
 
     const { error: uploadError } =
         await supabaseClient.storage
@@ -930,6 +1001,7 @@ async function materialHinzufuegen() {
                 datei
             );
 
+
     if (uploadError) {
 
         console.error(uploadError);
@@ -938,6 +1010,9 @@ async function materialHinzufuegen() {
 
         return;
     }
+
+
+    // Datenbankeintrag speichern
 
     const { error: dbError } =
         await supabaseClient
@@ -950,9 +1025,11 @@ async function materialHinzufuegen() {
                 datei_pfad: dateipfad
             });
 
+
     if (dbError) {
 
         console.error(dbError);
+
 
         await supabaseClient.storage
             .from("lernmaterial")
@@ -960,13 +1037,16 @@ async function materialHinzufuegen() {
                 dateipfad
             ]);
 
+
         alert("Lernmaterial konnte nicht gespeichert werden.");
 
         return;
     }
 
+
     nameElement.value = "";
     dateiInput.value = "";
+
 
     await materialLaden();
 }
@@ -983,6 +1063,7 @@ async function materialOeffnen(index) {
 
     if (!material) return;
 
+
     const { data, error } =
         await supabaseClient.storage
             .from("lernmaterial")
@@ -990,6 +1071,7 @@ async function materialOeffnen(index) {
                 material.datei_pfad,
                 3600
             );
+
 
     if (error) {
 
@@ -999,6 +1081,7 @@ async function materialOeffnen(index) {
 
         return;
     }
+
 
     window.open(
         data.signedUrl,
@@ -1018,10 +1101,14 @@ async function materialLoeschen(index) {
 
     if (!material) return;
 
+
     const user =
         await benutzerLaden();
 
     if (!user) return;
+
+
+    // Datei löschen
 
     const { error: storageError } =
         await supabaseClient.storage
@@ -1029,6 +1116,7 @@ async function materialLoeschen(index) {
             .remove([
                 material.datei_pfad
             ]);
+
 
     if (storageError) {
 
@@ -1039,12 +1127,16 @@ async function materialLoeschen(index) {
         return;
     }
 
+
+    // Datenbank löschen
+
     const { error: dbError } =
         await supabaseClient
             .from("materialien")
             .delete()
             .eq("id", material.id)
             .eq("user_id", user.id);
+
 
     if (dbError) {
 
@@ -1054,6 +1146,7 @@ async function materialLoeschen(index) {
 
         return;
     }
+
 
     await materialLaden();
 }
@@ -1070,23 +1163,32 @@ function materialienFiltern() {
 
     if (!filter) return;
 
+
     const ausgewaehltesFach =
         filter.value;
 
-    if (ausgewaehltesFach === "Alle") {
 
-        materialAnzeigen();
+    if (
+        ausgewaehltesFach === "Alle"
+    ) {
+
+        materialAnzeigen(materialien);
 
         return;
     }
 
+
     const gefilterteMaterialien =
         materialien.filter(
             material =>
-                material.fach === ausgewaehltesFach
+                material.fach ===
+                ausgewaehltesFach
         );
 
-    materialAnzeigen(gefilterteMaterialien);
+
+    materialAnzeigen(
+        gefilterteMaterialien
+    );
 }
 
 
@@ -1099,31 +1201,44 @@ function materialAnzeigen(
 ) {
 
     const container =
-        document.getElementById("materialListe");
+        document.getElementById(
+            "materialListe"
+        );
+
 
     if (!container) return;
 
+
     container.innerHTML = "";
+
 
     if (liste.length === 0) {
 
         container.innerHTML =
-            "<p>Keine Materialien für dieses Fach vorhanden.</p>";
+            "<p>Für dieses Fach ist noch kein Lernmaterial vorhanden.</p>";
 
         return;
     }
 
+
     liste.forEach(
-        (material) => {
+        material => {
 
             const originalIndex =
-                materialien.indexOf(material);
+                materialien.findIndex(
+                    m =>
+                        m.id ===
+                        material.id
+                );
+
 
             const div =
                 document.createElement("div");
 
+
             div.className =
                 "termin";
+
 
             div.innerHTML = `
 
@@ -1152,7 +1267,9 @@ function materialAnzeigen(
                 >
                     Löschen
                 </button>
+
             `;
+
 
             container.appendChild(div);
         }
@@ -1161,7 +1278,7 @@ function materialAnzeigen(
 
 
 // ==========================
-// START
+// ALLES STARTEN
 // ==========================
 
 async function allesStarten() {
@@ -1171,6 +1288,7 @@ async function allesStarten() {
 
     if (!user)
         return;
+
 
     await termineLaden();
 
