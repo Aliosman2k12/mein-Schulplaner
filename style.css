@@ -51,6 +51,7 @@ nav a:hover {
 }
 
 
+
 /* ==========================
    HAUPTBEREICH
    ========================== */
@@ -387,4 +388,30 @@ button:hover {
     .ziel-formular button {
         width: 100%;
     }
+}
+/* ==========================
+   LERNMATERIAL FILTER
+   ========================== */
+
+#fachFilter {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 15px;
+    margin-bottom: 25px;
+
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    background-color: white;
+    color: #222;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    box-sizing: border-box;
+}
+
+#fachFilter:focus {
+    outline: none;
+    border-color: #555;
 }
