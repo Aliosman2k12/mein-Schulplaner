@@ -22,6 +22,7 @@
     </nav>
 </header>
 
+
 <main>
 
     <h2>Lernmaterial</h2>
@@ -62,42 +63,61 @@
 
     </div>
 
+
     <h2>Meine Lernmaterialien</h2>
 
-    <!-- Fach-Filter -->
-    <select id="fachFilter" onchange="materialienFiltern()">
-        <option value="Alle">Alle Fächer</option>
-        <option value="Mathe">Mathe</option>
-        <option value="Deutsch">Deutsch</option>
-        <option value="Englisch">Englisch</option>
-        <option value="Französisch">Französisch</option>
-        <option value="Bio">Bio</option>
-        <option value="Physik">Physik</option>
-        <option value="Chemie">Chemie</option>
-        <option value="Politik">Politik</option>
-        <option value="Musik">Musik</option>
-        <option value="Sport">Sport</option>
-        <option value="Geographie">Geographie</option>
-        <option value="Ethik">Ethik</option>
-        <option value="Geschichte">Geschichte</option>
-        <option value="Kunst">Kunst</option>
-    </select>
+
+    <!-- FILTER -->
+
+    <div class="filter-box">
+
+        <div class="filter-titel">
+            Lernmaterial nach Fach filtern
+        </div>
+
+        <select
+            id="fachFilter"
+            onchange="materialienFiltern()"
+        >
+            <option value="Alle">Alle Fächer</option>
+            <option value="Mathe">Mathe</option>
+            <option value="Deutsch">Deutsch</option>
+            <option value="Englisch">Englisch</option>
+            <option value="Französisch">Französisch</option>
+            <option value="Bio">Bio</option>
+            <option value="Physik">Physik</option>
+            <option value="Chemie">Chemie</option>
+            <option value="Politik">Politik</option>
+            <option value="Musik">Musik</option>
+            <option value="Sport">Sport</option>
+            <option value="Geographie">Geographie</option>
+            <option value="Ethik">Ethik</option>
+            <option value="Geschichte">Geschichte</option>
+            <option value="Kunst">Kunst</option>
+        </select>
+
+    </div>
+
 
     <div id="materialListe"></div>
 
 </main>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL = "https://vpenaoibwhwxislraznq.supabase.co";
+const SUPABASE_URL =
+    "https://vpenaoibwhwxislraznq.supabase.co";
 
-const SUPABASE_KEY = "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
+const SUPABASE_KEY =
+    "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 </script>
 
 <script src="script.js"></script>
