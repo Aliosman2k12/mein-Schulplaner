@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +23,9 @@
     </nav>
 </header>
 
-
 <main>
 
     <h2>Lernmaterial</h2>
-
-    <!-- MATERIAL HINZUFÜGEN -->
 
     <div class="formular">
 
@@ -65,48 +63,30 @@
 
     </div>
 
-
     <h2>Meine Lernmaterialien</h2>
 
-
-    <!-- FACH-FILTER -->
-
-    <div class="filter-box">
-
-        <div class="filter-titel">
-            Lernmaterial nach Fach filtern
-        </div>
-
-        <select
-            id="fachFilter"
-            onchange="materialienFiltern()"
-        >
-            <option value="Alle">Alle Fächer</option>
-            <option value="Mathe">Mathe</option>
-            <option value="Deutsch">Deutsch</option>
-            <option value="Englisch">Englisch</option>
-            <option value="Französisch">Französisch</option>
-            <option value="Bio">Bio</option>
-            <option value="Physik">Physik</option>
-            <option value="Chemie">Chemie</option>
-            <option value="Politik">Politik</option>
-            <option value="Musik">Musik</option>
-            <option value="Sport">Sport</option>
-            <option value="Geographie">Geographie</option>
-            <option value="Ethik">Ethik</option>
-            <option value="Geschichte">Geschichte</option>
-            <option value="Kunst">Kunst</option>
-        </select>
-
-    </div>
-
-
-    <!-- MATERIALIEN -->
+    <!-- Filter -->
+    <select id="fachFilter" onchange="materialienFiltern()">
+        <option value="Alle">Alle Fächer</option>
+        <option value="Mathe">Mathe</option>
+        <option value="Deutsch">Deutsch</option>
+        <option value="Englisch">Englisch</option>
+        <option value="Französisch">Französisch</option>
+        <option value="Bio">Bio</option>
+        <option value="Physik">Physik</option>
+        <option value="Chemie">Chemie</option>
+        <option value="Politik">Politik</option>
+        <option value="Musik">Musik</option>
+        <option value="Sport">Sport</option>
+        <option value="Geographie">Geographie</option>
+        <option value="Ethik">Ethik</option>
+        <option value="Geschichte">Geschichte</option>
+        <option value="Kunst">Kunst</option>
+    </select>
 
     <div id="materialListe"></div>
 
 </main>
-
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
