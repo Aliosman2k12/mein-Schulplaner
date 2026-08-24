@@ -19,7 +19,6 @@
             <a href="noten.html">Notenrechner</a>
             <a href="lernmaterial.html">Lernmaterial</a>
         </div>
-
     </nav>
 </header>
 
@@ -65,6 +64,25 @@
 
     <h2>Meine Lernmaterialien</h2>
 
+    <!-- Fach-Filter -->
+    <select id="fachFilter" onchange="materialienFiltern()">
+        <option value="Alle">Alle Fächer</option>
+        <option value="Mathe">Mathe</option>
+        <option value="Deutsch">Deutsch</option>
+        <option value="Englisch">Englisch</option>
+        <option value="Französisch">Französisch</option>
+        <option value="Bio">Bio</option>
+        <option value="Physik">Physik</option>
+        <option value="Chemie">Chemie</option>
+        <option value="Politik">Politik</option>
+        <option value="Musik">Musik</option>
+        <option value="Sport">Sport</option>
+        <option value="Geographie">Geographie</option>
+        <option value="Ethik">Ethik</option>
+        <option value="Geschichte">Geschichte</option>
+        <option value="Kunst">Kunst</option>
+    </select>
+
     <div id="materialListe"></div>
 
 </main>
@@ -86,5 +104,3 @@ const supabaseClient = window.supabase.createClient(
 
 </body>
 </html>
-
-
