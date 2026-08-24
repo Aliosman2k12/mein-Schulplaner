@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="de">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,9 +62,9 @@
 
     </div>
 
+
     <h2>Meine Lernmaterialien</h2>
 
-    <!-- Filter -->
     <select id="fachFilter" onchange="materialienFiltern()">
         <option value="Alle">Alle Fächer</option>
         <option value="Mathe">Mathe</option>
@@ -88,20 +87,18 @@
 
 </main>
 
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const SUPABASE_URL =
-    "https://vpenaoibwhwxislraznq.supabase.co";
+const SUPABASE_URL = "https://vpenaoibwhwxislraznq.supabase.co";
 
-const SUPABASE_KEY =
-    "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
+const SUPABASE_KEY = "sb_publishable_WJdn10AwAwZLoERLB6AUag_UJ-cpqxa";
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 </script>
 
 <script src="script.js"></script>
